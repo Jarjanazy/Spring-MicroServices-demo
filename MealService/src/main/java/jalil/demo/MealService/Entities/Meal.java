@@ -20,7 +20,7 @@ public class Meal {
     private String mealName;
     private String mealCountry;
 
-    Meal(String mealName, String mealCountry){
+    public Meal(String mealName, String mealCountry){
         this.mealCountry = mealCountry;
         this.mealName = mealName;
     }
