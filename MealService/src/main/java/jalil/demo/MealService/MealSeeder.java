@@ -28,6 +28,7 @@ public class MealSeeder implements CommandLineRunner {
        List<Meal> meals = new ArrayList<>();
        meals.add(new Meal("HamBurger", "USA"));
        meals.add(new Meal("Mouhshi", "Syria"));
+        meals.add(new Meal("Safarjaliye", "Syria"));
 
        mealRepo.saveAll(meals);
        logger.info("Added new Meals");
