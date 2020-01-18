@@ -26,9 +26,9 @@ public class MealSeeder implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
        List<Meal> meals = new ArrayList<>();
-       meals.add(new Meal("HamBurger", "USA"));
-       meals.add(new Meal("Mouhshi", "Syria"));
-        meals.add(new Meal("Safarjaliye", "Syria"));
+       meals.add(new Meal("hamburger", "USA"));
+       meals.add(new Meal("mouhshi", "Syria"));
+        meals.add(new Meal("safarjaliye", "Syria"));
 
        mealRepo.saveAll(meals);
        logger.info("Added new Meals");

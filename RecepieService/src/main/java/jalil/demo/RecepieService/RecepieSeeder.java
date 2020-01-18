@@ -35,7 +35,7 @@ public class RecepieSeeder implements CommandLineRunner {
         ingredientRepo.saveAll(hamburger_ingredients);
         logger.debug("Hamburger ingredients are added");
 
-        Recipe hamburger_recipe = new Recipe("Hamburger");
+        Recipe hamburger_recipe = new Recipe("hamburger");
         hamburger_recipe.setIngredients(hamburger_ingredients);
         hamburger_recipe.setPreparation("Fry ham, add it between two breads, spread salt, put tomatoes, Eat!!");
 
