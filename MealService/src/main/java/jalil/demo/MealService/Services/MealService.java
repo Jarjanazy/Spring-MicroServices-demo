@@ -1,11 +1,13 @@
 package jalil.demo.MealService.Services;
 
+import jalil.demo.MealService.DTO.RecipeDTO;
 import jalil.demo.MealService.Entities.Meal;
 import jalil.demo.MealService.Repos.MealRepo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 
@@ -14,9 +16,12 @@ public class MealService {
     private Logger logger = LoggerFactory.getLogger(MealService.class);
 
     private MealRepo mealRepo;
+    /*used to make synchronises API calls*/
+    private RestTemplate restTemplate;
 
-    MealService(@Autowired MealRepo mealRepo){
+    MealService(@Autowired MealRepo mealRepo, @Autowired RestTemplate restTemplate){
         this.mealRepo = mealRepo;
+        this.restTemplate = restTemplate;
     }
 
 
@@ -37,6 +42,11 @@ public class MealService {
         return meals;
     }
 
+    /* will make a call to the Recipe micro service to obtain the recipe and ingredients for a given meal name*/
+    public RecipeDTO getMealRecipe(String mealName){
+        /*for now the URL of the API is hard coded*/
+        return restTemplate.getForObject("http://localhost:8082/recipe/" + mealName, RecipeDTO.class);
+    }
 
 
 
