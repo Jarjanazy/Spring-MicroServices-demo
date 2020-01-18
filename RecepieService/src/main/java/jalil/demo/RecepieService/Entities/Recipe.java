@@ -1,9 +1,9 @@
 package jalil.demo.RecepieService.Entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
-import org.springframework.stereotype.Component;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -24,6 +24,7 @@ public class Recipe {
     private String recipeName;
 
     @ManyToMany
+    @JsonManagedReference // this annotation is used to eliminate the circular reference
     private List<Ingredient> ingredients = new ArrayList<>();
 
     public Recipe(String recipeName){

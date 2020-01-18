@@ -1,5 +1,6 @@
 package jalil.demo.RecepieService.Services;
 
+import jalil.demo.RecepieService.Entities.Ingredient;
 import jalil.demo.RecepieService.Entities.Recipe;
 import jalil.demo.RecepieService.Repos.IngredientRepo;
 import jalil.demo.RecepieService.Repos.RecipeRepo;
@@ -7,6 +8,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class RecepieService {
@@ -28,5 +31,11 @@ public class RecepieService {
         }
         return recipe;
     }
+
+    public List<Ingredient> getRecipeIngredients(String recipeName){
+        Recipe recipe = recipeRepo.getRecipeByRecipeName(recipeName);
+        return recipe.getIngredients();
+    }
+
 
 }
