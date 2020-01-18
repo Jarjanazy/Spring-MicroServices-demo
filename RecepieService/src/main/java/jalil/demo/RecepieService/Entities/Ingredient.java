@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,10 +15,11 @@ public class Ingredient {
     @GeneratedValue(strategy = GenerationType.SEQUENCE)
     private int id;
 
+    @Column(unique = true)
     private String ingredientName;
 
     @ManyToMany(mappedBy = "ingredients")
-    private List<Recipe> recepies;
+    private List<Recipe> recepies = new ArrayList<>();
 
     public Ingredient(String ingredientName){
         this.ingredientName = ingredientName;
