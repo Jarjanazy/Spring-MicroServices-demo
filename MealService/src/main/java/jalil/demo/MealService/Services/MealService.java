@@ -1,5 +1,6 @@
 package jalil.demo.MealService.Services;
 
+import jalil.demo.MealService.DTO.MealDTO;
 import jalil.demo.MealService.DTO.RecipeDTO;
 import jalil.demo.MealService.Entities.Meal;
 import jalil.demo.MealService.Repos.MealRepo;
@@ -25,21 +26,22 @@ public class MealService {
     }
 
 
-    public Meal getMealByName(String mealName){
+    public MealDTO getMealByName(String mealName){
         Meal meal = mealRepo.findMealByMealName(mealName);
         if(meal == null){
             logger.info("No Meal found for meal name:" + mealName);
             return null;
         }
-        return meal;
+
+        return new MealDTO(meal);
     }
 
-    public List<Meal> getMealsByCountry(String countryName){
+    public MealDTO getMealsByCountry(String countryName){
         List<Meal> meals = mealRepo.findMealsByMealCountry(countryName);
         if (meals.isEmpty()){
             logger.info("No Meals found for the country: " + countryName);
         }
-        return meals;
+        return new MealDTO(meals);
     }
 
     /* will make a call to the Recipe micro service to obtain the recipe and ingredients for a given meal name*/

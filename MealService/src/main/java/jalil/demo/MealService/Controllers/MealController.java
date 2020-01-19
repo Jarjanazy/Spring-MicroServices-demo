@@ -1,5 +1,6 @@
 package jalil.demo.MealService.Controllers;
 
+import jalil.demo.MealService.DTO.MealDTO;
 import jalil.demo.MealService.DTO.RecipeDTO;
 import jalil.demo.MealService.Entities.Meal;
 import jalil.demo.MealService.Services.MealService;
@@ -20,12 +21,12 @@ public class MealController {
     }
 
     @GetMapping("/meal/{mealName}")
-    public Meal getMealByName(@PathVariable String mealName){
+    public MealDTO getMealByName(@PathVariable String mealName){
         return mealService.getMealByName(mealName);
     }
 
     @GetMapping("/meal/country/{countryName}")
-    public List<Meal> getMealsByCountry(@PathVariable String countryName){
+    public MealDTO getMealsByCountry(@PathVariable String countryName){
         return mealService.getMealsByCountry(countryName);
     }
 
