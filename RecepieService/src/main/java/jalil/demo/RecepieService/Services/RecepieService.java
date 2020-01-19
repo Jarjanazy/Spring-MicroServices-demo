@@ -1,5 +1,7 @@
 package jalil.demo.RecepieService.Services;
 
+import jalil.demo.RecepieService.DTO.IngredientDTO;
+import jalil.demo.RecepieService.DTO.RecipeDTO;
 import jalil.demo.RecepieService.Entities.Ingredient;
 import jalil.demo.RecepieService.Entities.Recipe;
 import jalil.demo.RecepieService.Repos.IngredientRepo;
@@ -10,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class RecepieService {
@@ -24,17 +27,27 @@ public class RecepieService {
     }
 
 
-    public Recipe getRecipeByRecipeName(String recipeName){
+    public RecipeDTO getRecipeByRecipeName(String recipeName){
         Recipe recipe = recipeRepo.getRecipeByRecipeName(recipeName);
         if (recipe == null){
             logger.info("No recipe is found for:" + recipeName);
+            return null;
         }
-        return recipe;
+        /* create RecipeDTO from Recipe*/
+        return new RecipeDTO(
+                    recipe.getPreparation(),
+                    recipe.getRecipeName(),
+                    /* create list of IngredientDTO from list of Ingredient*/
+                    recipe.getIngredients()
+        );
     }
 
-    public List<Ingredient> getRecipeIngredients(String recipeName){
+    public IngredientDTO getRecipeIngredients(String recipeName){
         Recipe recipe = recipeRepo.getRecipeByRecipeName(recipeName);
-        return recipe.getIngredients();
+        if (recipe == null){
+            return null;
+        }
+        return new IngredientDTO(recipe.getIngredients());
     }
 
 

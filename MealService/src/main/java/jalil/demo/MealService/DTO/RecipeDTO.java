@@ -18,6 +18,6 @@ import java.util.List;
 public class RecipeDTO {
     private String preparation;
     private String recipeName;
-    private List<IngredientDTO> ingredients = new ArrayList<>();
+    private IngredientDTO ingredients;
 
 }
