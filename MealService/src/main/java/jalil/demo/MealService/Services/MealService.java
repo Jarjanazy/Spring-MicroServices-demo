@@ -47,7 +47,7 @@ public class MealService {
     /* will make a call to the Recipe micro service to obtain the recipe and ingredients for a given meal name*/
     public RecipeDTO getMealRecipe(String mealName){
         /*for now the URL of the API is hard coded*/
-        return restTemplate.getForObject("http://localhost:8082/recipe/" + mealName, RecipeDTO.class);
+        return restTemplate.getForObject("http://RecipeService/recipe/" + mealName, RecipeDTO.class);
     }
 
 
