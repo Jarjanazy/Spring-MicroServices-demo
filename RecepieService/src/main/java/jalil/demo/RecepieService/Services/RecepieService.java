@@ -34,12 +34,7 @@ public class RecepieService {
             return null;
         }
         /* create RecipeDTO from Recipe*/
-        return new RecipeDTO(
-                    recipe.getPreparation(),
-                    recipe.getRecipeName(),
-                    /* create list of IngredientDTO from list of Ingredient*/
-                    recipe.getIngredients()
-        );
+        return new RecipeDTO(recipe);
     }
 
     public IngredientDTO getRecipeIngredients(String recipeName){
