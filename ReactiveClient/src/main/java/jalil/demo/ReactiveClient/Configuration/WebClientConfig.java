@@ -9,13 +9,10 @@ import org.springframework.web.reactive.function.client.WebClient;
 @Configuration
 public class WebClientConfig {
 
-    @Bean
-    @Qualifier("mealServiceClient")
+    @Bean("mealServiceClient")
     @LoadBalanced
-    public WebClient getWebClient(){
+    public WebClient.Builder getMealServiceWebClient(){
         return  WebClient
-                .builder()
-                .baseUrl("http://MealService")
-                .build();
+                .builder();
     }
 }
