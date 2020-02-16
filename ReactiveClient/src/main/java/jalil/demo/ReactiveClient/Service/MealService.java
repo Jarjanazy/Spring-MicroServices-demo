@@ -12,15 +12,15 @@ import reactor.core.publisher.Mono;
 public class MealService {
     Logger logger = LoggerFactory.getLogger(MealService.class);
 
-    WebClient.Builder mealServiceWebClient;
+    WebClient.Builder webClient;
 
     public MealService(
-            @Autowired @Qualifier("mealServiceClient") WebClient.Builder mealServiceWebClient){
-        this.mealServiceWebClient = mealServiceWebClient;
+            @Autowired @Qualifier("webClient") WebClient.Builder webClient){
+        this.webClient = webClient;
     }
 
     public Mono<String> getMealByName(String mealName){
-        return mealServiceWebClient
+        return webClient
                 .build()
                 .get()
                 .uri("http://MealService/meal/{mealName}", mealName)
